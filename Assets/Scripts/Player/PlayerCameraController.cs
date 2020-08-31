@@ -18,14 +18,23 @@ namespace Player {
         }
 
         private void LateUpdate() {
-            targetPosition = target.position + target.up * distanceUp - target.forward * distanceAway;
+            Vector3 characterOffset = target.position + offset;
 
-            Debug.DrawRay(target.position, Vector3.up * distanceUp, Color.red);
-            Debug.DrawRay(target.position, -1f * target.forward * distanceAway, Color.blue);
-            Debug.DrawLine(target.position, targetPosition, Color.magenta);
+            lookDirection = characterOffset - this.transform.position;
+            lookDirection.y = 0f;
+            lookDirection.Normalize();
 
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smooth);
+            // Setting target position to be the correct offset
+            targetPosition = characterOffset + target.up * distanceUp - lookDirection * distanceAway;
+
+            // making smooth transition between current position and new position
+            SmoothPosition(this.transform.position, targetPosition);
+
+            // Ensuring camera faces target
             transform.LookAt(target);
+        }
+        private void SmoothPosition(Vector3 fromPos, Vector3 toPos) {
+            this.transform.position = Vector3.SmoothDamp(fromPos, toPos, ref velocityCamSmooth, 0.1f);
         }
     }
 }

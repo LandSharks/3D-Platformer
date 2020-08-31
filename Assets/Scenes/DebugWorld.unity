@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 144919562, guid: 60ae7ebad1e7d264fa4443f7e43ac185, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4006701084554406984, guid: 60ae7ebad1e7d264fa4443f7e43ac185, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.904378
@@ -220,7 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSpeed: 5
-  rotationSpeed: 3
+  rotationSpeed: 30
+  directionOut: 0
 --- !u!1001 &324390578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -406,7 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceAway: 6
-  distanceUp: 0
+  distanceUp: 2
   smooth: 10
   target: {fileID: 2090778278}
   offset: {x: 0, y: 1.5, z: 0}
